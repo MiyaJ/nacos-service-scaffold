@@ -1,0 +1,20 @@
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://172.81.245.35:3306/demo?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#    username: root
+#    password: cai555777+
+#
+## Logger Config
+#logging:
+#  level:
+#    com.baomidou.mybatisplus.samples.mysql: debug
+#
+## mybatis mplus 配置
+#mybatis-plus:
+#  type-aliases-package: com.miya.demo.entity
+#  mapper-locations: classpath:mapper/*.xml
+#  configuration:
+#    jdbc-type-for-null: null
+#  global-config:
+#    banner: false

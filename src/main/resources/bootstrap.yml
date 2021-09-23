@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: nacos-service-scaffold
+  cloud:
+    nacos:
+      config:
+        file-extension: yml
+        namespace: 462daff6-139a-48bd-a529-39ef27b87745
+        server-addr: http://www.miya-l.top:8001
+        group: DEFAULT_GROUP
+        shared-configs: mysql.yml,redis.yml
+      discovery:
+        namespace: 462daff6-139a-48bd-a529-39ef27b87745
+        server-addr: http://www.miya-l.top:8001
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://172.81.245.35:3306/demo?useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#    username: root
+#    password: cai555777+
+  main:
+    allow-bean-definition-overriding: true
+
+
+# Logger Config
+logging:
+  level:
+    com.baomidou.mybatisplus.samples.mysql: debug
+
+# mybatis mplus 配置
+mybatis-plus:
+  type-aliases-package: com.miya.demo.entity
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    jdbc-type-for-null: null
+  global-config:
+    banner: false
