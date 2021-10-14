@@ -22,9 +22,10 @@
         <mybatis-plus.version>3.4.3.3</mybatis-plus.version>
         <dynamic-datasource.version>3.4.1</dynamic-datasource.version>
         <p6spy.version>3.9.1</p6spy.version>
-        <knife4j.version>3.0.3</knife4j.version>
+        <knife4j.version>3.0.2</knife4j.version>
         <jakarta.el.version>3.0.4</jakarta.el.version>
         <aspectjrt.version>1.5.4</aspectjrt.version>
+        <minio.version>8.3.0</minio.version>
     </properties>
 
     <dependencyManagement>
@@ -56,6 +57,12 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
 
         <!--nacos 配置中心-->
@@ -114,6 +121,11 @@
 
         <!--knife4j 在线接口文档-->
         <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
             <version>${knife4j.version}</version>
@@ -164,6 +176,14 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.minio/minio -->
+        <dependency>
+            <groupId>io.minio</groupId>
+            <artifactId>minio</artifactId>
+            <version>${minio.version}</version>
+        </dependency>
+
 
     </dependencies>
 

@@ -34,3 +34,10 @@ mybatis-plus:
     jdbc-type-for-null: null
   global-config:
     banner: false
+
+# minio文件服务器
+minio:
+  endpoint: www.miya-l.top  # 外网
+  accessKey: admin
+  secretKey: admin123
+  endpointIn: http://127.0.0.1:9000  # 内网
