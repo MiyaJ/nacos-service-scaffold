@@ -1,14 +1,16 @@
 package com.miya.demo.config;
 
+import com.github.xiaoymin.knife4j.spring.annotations.EnableKnife4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
+import springfox.documentation.service.ApiInfo;
 import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
-import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
  * knife4j配置
@@ -17,19 +19,15 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @date 2021/09/22
  */
 @Configuration
-@EnableSwagger2
+@EnableOpenApi
+@EnableKnife4j
 public class Knife4jConfiguration {
 
-	@Bean(value = "defaultApi2")
-	public Docket defaultApi2() {
-		Docket docket=new Docket(DocumentationType.SWAGGER_2)
-				.apiInfo(new ApiInfoBuilder()
-						//.title("swagger-bootstrap-ui-demo RESTful APIs")
-						.description("# swagger-bootstrap-ui-demo RESTful APIs")
-						.termsOfServiceUrl("http://www.xx.com/")
-						.contact(new Contact("cxw", "www.baidu.com", "123456@qq.com"))
-						.version("1.0")
-						.build())
+	@Bean
+	public Docket defaultApi() {
+		return new Docket(DocumentationType.OAS_30)
+				.enable(true)
+				.apiInfo(apiInfo())
 				//分组名称
 				.groupName("scaffold")
 				.select()
@@ -37,6 +35,15 @@ public class Knife4jConfiguration {
 				.apis(RequestHandlerSelectors.basePackage("com.miya.demo.controller"))
 				.paths(PathSelectors.any())
 				.build();
-		return docket;
+	}
+
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder()
+				.title("swagger-bootstrap-ui-demo RESTful APIs")
+				.description("# swagger-bootstrap-ui-demo RESTful APIs")
+				.termsOfServiceUrl("http://www.xx.com/")
+				.contact(new Contact("cxw", "www.baidu.com", "123456@qq.com"))
+				.version("1.0")
+				.build();
 	}
 }

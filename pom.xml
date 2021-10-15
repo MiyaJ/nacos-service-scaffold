@@ -22,10 +22,11 @@
         <mybatis-plus.version>3.4.3.3</mybatis-plus.version>
         <dynamic-datasource.version>3.4.1</dynamic-datasource.version>
         <p6spy.version>3.9.1</p6spy.version>
-        <knife4j.version>3.0.2</knife4j.version>
+        <springfox.version>3.0.0</springfox.version>
+        <knife4j.version>3.0.3</knife4j.version>
         <jakarta.el.version>3.0.4</jakarta.el.version>
         <aspectjrt.version>1.5.4</aspectjrt.version>
-        <minio.version>8.3.0</minio.version>
+        <minio.version>8.3.1</minio.version>
     </properties>
 
     <dependencyManagement>
@@ -70,6 +71,12 @@
             <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
             <version>${alibaba.cloud.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!--nacos 注册发现-->
@@ -123,12 +130,26 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-boot-starter</artifactId>
-            <version>3.0.0</version>
+            <version>${springfox.version}</version>
         </dependency>
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
             <version>${knife4j.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>swagger-annotations</artifactId>
+                    <groupId>io.swagger</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>swagger-models</artifactId>
+                    <groupId>io.swagger</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -182,6 +203,18 @@
             <groupId>io.minio</groupId>
             <artifactId>minio</artifactId>
             <version>${minio.version}</version>
+            <exclusions>
+                <exclusion>
+                    <artifactId>okhttp</artifactId>
+                    <groupId>com.squareup.okhttp3</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.9.0</version>
         </dependency>
 
 
