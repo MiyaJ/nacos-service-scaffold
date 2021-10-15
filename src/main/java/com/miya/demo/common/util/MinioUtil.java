@@ -83,6 +83,29 @@ public class MinioUtil {
 	}
 
 	/**
+	 * 得到对象
+	 *
+	 * @param bucket 桶
+	 * @param object 对象
+	 * @return {@link String}
+	 */
+	public String getObject(String bucket, String object) {
+		GetObjectArgs args = GetObjectArgs.builder()
+				.bucket(bucket)
+				.object(object)
+				.build();
+		String objectUrl = StrUtil.EMPTY;
+		try {
+			GetObjectResponse clientObject = minioClient.getObject(args);
+			objectUrl = this.getObjectUrl(clientObject.bucket(), clientObject.object());
+		} catch (Exception e) {
+			log.error("getObject error, bucket:{}, object:{}, e", bucket, object, e);
+		}
+
+		return objectUrl;
+	}
+
+	/**
 	 * 得到对象url
 	 *
 	 * @param bucket 桶
