@@ -30,14 +30,15 @@ public class TestController {
 
 	@Autowired
 	private CustomerService customerService;
+	@Autowired
+	private MinioUtil minioUtil;
 
 	@GetMapping("/list")
-	public Object list() {
-		List<Customer> list = customerService.list();
-		return list;
+	public BaseResponse<List<Customer>> list() {
+		return BaseResponse.create(customerService.list());
 	}
 
-	@ApiOperation(value = "保存客户", notes = "cxw")
+	@ApiOperation(value = "保存客户", notes = "Corki")
 	@PostMapping("/saveCustomer")
 	public BaseResponse<Object> saveCustomer(@RequestBody @Validated CustomerAddDTO dto) {
 		Customer customer = new Customer();
@@ -45,10 +46,7 @@ public class TestController {
 		return BaseResponse.create(customerService.save(customer));
 	}
 
-	@Autowired
-	private MinioUtil minioUtil;
-
-	@ApiOperation(value = "验证bucket 是否存在", notes = "cxw")
+	@ApiOperation(value = "验证bucket 是否存在", notes = "Corki")
 	@GetMapping("/bucketExists")
 	public BaseResponse<Boolean> bucketExists(String bucketName) throws Exception {
 		boolean b = minioUtil.bucketExistes(bucketName);
@@ -59,6 +57,19 @@ public class TestController {
 	public BaseResponse<String> putObject(@RequestParam("file") MultipartFile file) throws IOException {
 		String objectUrl = minioUtil.putObject("miya", file.getOriginalFilename(), file.getInputStream());
 		return BaseResponse.create(objectUrl);
+	}
+
+	@ApiOperation(value = "上传Excel", notes = "Corki")
+	@PostMapping("/uploadExcel")
+	public BaseResponse<Void> uploadExcel(@RequestParam("file") MultipartFile file) throws IOException {
+		customerService.uploadExcel(file);
+		return BaseResponse.create();
+	}
+
+	@ApiOperation(value = "下载Excel", notes = "Corki")
+	@PostMapping("/downloadExcel")
+	public void downloadExcel() {
+		customerService.downloadExcel();
 	}
 
 }
