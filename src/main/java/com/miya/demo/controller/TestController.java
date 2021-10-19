@@ -67,7 +67,7 @@ public class TestController {
 	}
 
 	@ApiOperation(value = "下载Excel", notes = "Corki")
-	@PostMapping("/downloadExcel")
+	@GetMapping("/downloadExcel")
 	public void downloadExcel() {
 		customerService.downloadExcel();
 	}
