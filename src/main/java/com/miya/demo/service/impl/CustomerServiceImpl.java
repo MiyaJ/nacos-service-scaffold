@@ -18,7 +18,7 @@ public class CustomerServiceImpl extends ServiceImpl<CustomerMapper, Customer> i
 
 	@Override
 	public void uploadExcel(MultipartFile file) throws IOException {
-		EasyExcel.read(file.getInputStream(), CustomerUploadDTO.class, new CustomerUploadListener());
+		EasyExcel.read(file.getInputStream(), CustomerUploadDTO.class, new CustomerUploadListener(this)).sheet().doRead();
 	}
 
 	@Override
