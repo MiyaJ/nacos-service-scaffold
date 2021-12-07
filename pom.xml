@@ -27,6 +27,7 @@
         <jakarta.el.version>3.0.4</jakarta.el.version>
         <aspectjrt.version>1.5.4</aspectjrt.version>
         <minio.version>8.3.1</minio.version>
+        <elasticsearch.version>7.15.2</elasticsearch.version>
     </properties>
 
     <dependencyManagement>
@@ -233,6 +234,19 @@
             <groupId>org.apache.xmlbeans</groupId>
             <artifactId>xmlbeans</artifactId>
             <version>3.0.0</version>
+        </dependency>
+
+        <!--elasticsearch-->
+<!--        <dependency>-->
+<!--            <groupId>org.elasticsearch.client</groupId>-->
+<!--            <artifactId>elasticsearch-rest-client</artifactId>-->
+<!--            <version>${elasticsearch.version}</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>org.elasticsearch.client</groupId>
+            <artifactId>elasticsearch-rest-high-level-client</artifactId>
+            <version>${elasticsearch.version}</version>
         </dependency>
 
 
