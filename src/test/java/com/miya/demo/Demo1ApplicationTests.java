@@ -3,9 +3,11 @@ package com.miya.demo;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.json.JSONUtil;
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.miya.demo.common.util.MinioUtil;
 import com.miya.demo.config.ElasticsearchConfig;
 import com.miya.demo.entity.Customer;
+import com.miya.demo.handler.HandlerHolder;
 import com.miya.demo.service.CustomerService;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
@@ -105,5 +107,17 @@ class Demo1ApplicationTests {
 		GetRequest request = new GetRequest("posts", "1");
 		GetResponse response = restClient.get(request, ElasticsearchConfig.COMMON_OPTIONS);
 		log.info("response---> {}", JSONUtil.toJsonStr(response));
+	}
+
+	@Autowired
+	private HandlerHolder handlerHolder;
+
+	@Test
+	public void testHandler() {
+		Integer orderType = 1;
+		handlerHolder.rout(orderType).doHandle(Maps.newHashMap());
+
+		orderType = 2;
+		handlerHolder.rout(orderType).doHandle(Maps.newHashMap());
 	}
 }
